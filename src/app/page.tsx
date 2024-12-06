@@ -8,7 +8,7 @@ import Hero from "@/components/cards/hero";
 
 export const metadata: Metadata = {
   title: "KUPA STARS",
-  description: "Birçok özellik içeren bot.",
+  description: "Moderasyon, Eğlence, Oyun, Kullanıcı Komutları, Log Sistemi ve daha fazlasını içeren Discord Botu.",
 };
 
 export default function Home() {
