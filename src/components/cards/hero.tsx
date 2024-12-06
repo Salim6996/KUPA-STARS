@@ -62,17 +62,17 @@ const Hero: React.FC = () => {
                   }}
                 >
                   <DialogHeader className="text-white">
-                    <DialogTitle>Davet</DialogTitle>
+                    <DialogTitle>Davet Et</DialogTitle>
                     <DialogDescription className="text-base md:text-lg text-gray-300 py-4">
-                      DISCORD BOTU ADI'ni davet ederken, Hizmet Şartlarımızı ve
+                      KUPA STARS botunu davet ederken, Hizmet Şartlarımızı ve
                       Gizlilik Politikamızı kabul etmiş olursunuz.
                     </DialogDescription>
                   </DialogHeader>
                   <DialogFooter className="sm:justify-start">
-                    <Link href="#">
-                      <Button type="button" variant="ghost">
-                        Anladım
-                      </Button>
+                    <Link href="https://discord.com/oauth2/authorize?client_id=BOT_ID&scope=bot&permissions=PERMISSIONS">
+                      <a>
+                        <Button variant="ghost">Anladım</Button>
+                      </a>
                     </Link>
                   </DialogFooter>
                 </DialogContent>
