@@ -19,7 +19,7 @@ const Navbar = () => {
     <nav className="bg-gray-900 text-white py-4 relative z-10">
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="text-2xl font-bold hidden md:block">
-          <Link href="/">Discord Bot Name</Link>
+          <Link href="/">KUPA STARS</Link>
         </h1>
         <button
           className="block md:hidden text-white focus:outline-none"
