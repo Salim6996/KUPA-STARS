@@ -1,5 +1,5 @@
 import React from "react";
-import { FaDiscord, FaGithub } from "react-icons/fa";
+import { FaDiscord } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   return (
@@ -27,18 +27,13 @@ const Footer: React.FC = () => {
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="#" className="hover:underline ">
-                    Premium
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
+                  <a href="https://discord.com/invite/X93ESUR7SP" className="hover:underline">
                     Destek Sunucusu
                   </a>
                 </li>
                 <li className="mb-4">
                   <a href="#" className="hover:underline ">
-                    GitHub
+                    Premium
                   </a>
                 </li>
               </ul>
@@ -70,19 +65,11 @@ const Footer: React.FC = () => {
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            © 2024{" "}
-            <a href="https://github.com/0xQueen/" className="hover:underline">
-              KUPA STARS
-            </a>
-            . Tüm Hakları Saklıdır.
+            © 2024 KUPA STARS. Tüm Hakları Saklıdır.
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <FaDiscord
-              href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
-            />
-            <FaGithub
-              href="https://github.com/0xQueen"
+              href="https://discord.com/invite/X93ESUR7SP"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
             />
           </div>
