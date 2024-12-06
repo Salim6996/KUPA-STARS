@@ -7,8 +7,8 @@ import InviteBot from "@/components/cards/invitebot";
 import Hero from "@/components/cards/hero";
 
 export const metadata: Metadata = {
-  title: "Discord Bot Template",
-  description: "Created by 0xQueen",
+  title: "KUPA STARS",
+  description: "Birçok özellik içeren bot.",
 };
 
 export default function Home() {
