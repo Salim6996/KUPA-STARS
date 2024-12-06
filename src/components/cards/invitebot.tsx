@@ -31,9 +31,9 @@ const InviteBot: React.FC = () => {
             }}
           >
             <DialogHeader className="text-white">
-              <DialogTitle>DISCORD BOTU ADI'ni Davet Et</DialogTitle>
+              <DialogTitle>KUPA STARS'ı Davet Et</DialogTitle>
               <DialogDescription className="text-base md:text-lg text-gray-300 py-4">
-                DISCORD BOTU ADI'ni davet ettiğinizde, Hizmet Şartlarımızı ve
+                KUPA STARS'ı davet ettiğinizde, Hizmet Şartlarımızı ve
                 Gizlilik Politikamızı kabul etmiş olursunuz.
               </DialogDescription>
             </DialogHeader>
