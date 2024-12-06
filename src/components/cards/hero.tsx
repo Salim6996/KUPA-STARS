@@ -91,8 +91,7 @@ const Hero: React.FC = () => {
                   <DialogHeader className="text-white">
                     <DialogTitle>Ah, bir sorun var...</DialogTitle>
                     <DialogDescription className="text-base md:text-lg text-gray-300 py-4">
-                      Discord botu veya satın alma işlemleri için bir panel
-                      implement etmedim. Kendiniz kodlamalısınız.
+                      Bu sayfa yakında açılacak.
                     </DialogDescription>
                   </DialogHeader>
                   <DialogFooter className="sm:justify-start">
