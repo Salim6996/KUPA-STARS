@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
                     </DialogDescription>
                   </DialogHeader>
                   <DialogFooter className="sm:justify-start">
-                    <Link href="https://discord.com/oauth2/authorize?client_id=BOT_ID&scope=bot&permissions=PERMISSIONS">
+                    <Link href="https://discord.com/oauth2/authorize?client_id=1157351510984900618&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.gg%2FX93ESUR7SP&integration_type=0&scope=applications.commands+bot+identify">
                       <a>
                         <Button variant="ghost">Anladım</Button>
                       </a>
