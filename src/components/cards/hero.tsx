@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     const options = {
-      strings: ["koru", "moderatörlük yap", "güvence altına al"],
+      strings: ["Log", "Moderasyon", "Eğlence", "Brawl Stars", "Destek Bileti", "Sunucu Koruma"],
       typeSpeed: 90,
       backSpeed: 90,
       loop: true,
@@ -43,13 +43,12 @@ const Hero: React.FC = () => {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between">
         <div className="max-w-md mx-auto md:mx-0 md:mr-8 text-center md:text-left">
           <h1 className="text-3xl md:text-4xl font-bold mb-4 text-pink-500">
-            Discord Botu Adı
+            KUPA STARS
           </h1>
           <p className="text-base md:text-lg leading-relaxed mb-8">
-            Discord Sunucunuzu{" "}
-            <span className="text-pink-500" ref={typingElement}></span> en
-            iyi şekilde nasıl{" "}
-            <span className="text-pink-500" ref={typingElement}></span> yapabilirsiniz.
+            Discord Sunucunuz{" "}
+            <span className="text-pink-500" ref={typingElement}></span> için{" "}
+            <span className="text-pink-500" ref={typingElement}></span> sistemi.
           </p>
           <div className="flex flex-col md:flex-row justify-center md:justify-start space-y-4 md:space-y-0 md:space-x-4">
             <div>
