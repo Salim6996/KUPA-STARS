@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://example.com/path-to-your-thumbnail.jpg", // Thumbnail resminin linki
+        url: "https://i.hizliresim.com/776do5x.png", // Thumbnail resminin linki
         width: 1200,
         height: 630,
       },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    image: "https://example.com/path-to-your-thumbnail.jpg", // Thumbnail resminin linki
+    image: "https://i.hizliresim.com/776do5x.png", // Thumbnail resminin linki
   },
 };
 
@@ -31,7 +31,7 @@ export default function Home() {
       {/* Site logosu ekleme */}
       <div className="flex justify-center mb-6">
         <Image
-          src="https://example.com/path-to-your-logo.png" // Logo dosyasının linki
+          src="https://i.hizliresim.com/776do5x.png" // Logo dosyasının linki
           alt="KUPA STARS Logo"
           width={150} // İstediğiniz genişlik
           height={150} // İstediğiniz yükseklik
@@ -45,4 +45,4 @@ export default function Home() {
       <InviteBot />
     </div>
   );
-}
+      }
