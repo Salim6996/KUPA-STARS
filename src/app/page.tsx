@@ -9,11 +9,35 @@ import Hero from "@/components/cards/hero";
 export const metadata: Metadata = {
   title: "KUPA STARS",
   description: "Moderasyon, Eğlence, Oyun, Kullanıcı Komutları, Log Sistemi ve daha fazlasını içeren Discord Botu.",
+  // Thumbnail ve logo ekleniyor
+  openGraph: {
+    images: [
+      {
+        url: "https://example.com/path-to-your-thumbnail.jpg", // Thumbnail resminin linki
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    image: "https://example.com/path-to-your-thumbnail.jpg", // Thumbnail resminin linki
+  },
 };
 
 export default function Home() {
   return (
     <div>
+      {/* Site logosu ekleme */}
+      <div className="flex justify-center mb-6">
+        <Image
+          src="https://example.com/path-to-your-logo.png" // Logo dosyasının linki
+          alt="KUPA STARS Logo"
+          width={150} // İstediğiniz genişlik
+          height={150} // İstediğiniz yükseklik
+        />
+      </div>
+
       <Hero />
       <Servers />
       <Features />
