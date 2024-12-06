@@ -16,14 +16,14 @@ const InviteBot: React.FC = () => {
   return (
     <section className="py-12 bg-gray-900 text-white">
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-6">Ready to invite?</h2>
+        <h2 className="text-4xl font-bold mb-6">Davet Etmeye Hazır Mısınız?</h2>
         <p className="text-lg text-gray-300 mb-8">
-          Upgrade your Discord experience with our bot. Enhance moderation,
-          security, and much more.
+          Discord deneyiminizi botumuzla geliştirin. Moderasyon, güvenlik ve çok
+          daha fazlasını geliştirin.
         </p>
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="outline">Invite</Button>
+            <Button variant="outline">Davet Et</Button>
           </DialogTrigger>
           <DialogContent
             style={{
@@ -31,22 +31,22 @@ const InviteBot: React.FC = () => {
             }}
           >
             <DialogHeader className="text-white">
-              <DialogTitle>Invite DISCORD BOT NAME</DialogTitle>
+              <DialogTitle>DISCORD BOTU ADI'ni Davet Et</DialogTitle>
               <DialogDescription className="text-base md:text-lg text-gray-300 py-4">
-                When inviting DISCORD BOT NAME, you agree to our Terms of
-                Service and Privacy Policy.
+                DISCORD BOTU ADI'ni davet ettiğinizde, Hizmet Şartlarımızı ve
+                Gizlilik Politikamızı kabul etmiş olursunuz.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4"></div>
             </div>
             <DialogFooter className="sm:justify-start">
-              <Link href="#">
-                <Button variant="ghost">I understand.</Button>
+              <Link href="https://discord.com/oauth2/authorize?client_id=BOT_ID&scope=bot&permissions=PERMISSIONS">
+                <Button variant="ghost">Anladım</Button>
               </Link>
             </DialogFooter>
           </DialogContent>
-        </Dialog>{" "}
+        </Dialog>
       </div>
     </section>
   );
