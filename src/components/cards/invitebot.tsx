@@ -42,7 +42,9 @@ const InviteBot: React.FC = () => {
             </div>
             <DialogFooter className="sm:justify-start">
               <Link href="https://discord.com/oauth2/authorize?client_id=BOT_ID&scope=bot&permissions=PERMISSIONS">
-                <Button variant="ghost">Anladım</Button>
+                <a>
+                  <Button variant="ghost">Anladım</Button>
+                </a>
               </Link>
             </DialogFooter>
           </DialogContent>
