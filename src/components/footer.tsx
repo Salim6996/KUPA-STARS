@@ -9,14 +9,12 @@ const Footer: React.FC = () => {
           <div className="mb-6 md:mb-0">
             <div className="flex flex-col">
               <span className="text-2xl font-semibold text-gray-900 dark:text-white">
-                Discord Bot Template
+                KUPA STARS
               </span>
               <div className="max-w-xs">
                 <p className="text-sm text-gray-600 dark:text-gray-400 text-wrap md:text-balance break-all">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Ipsum eum placeat quisquam, dicta cumque hic beatae ab, et
-                  nostrum possimus consequuntur voluptatibus tenetur quidem
-                  voluptas autem ullam blanditiis, obcaecati assumenda?
+                  KUPA STARS, Discord sunucularınız için harika bir asistandır. 
+                  Botumuzun sunduğu özelliklerle sunucunuzda daha etkili bir yönetim sağlayabilirsiniz.
                 </p>
               </div>
             </div>
@@ -25,7 +23,7 @@ const Footer: React.FC = () => {
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Discord Bot Name
+                KUPA STARS
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
@@ -35,7 +33,7 @@ const Footer: React.FC = () => {
                 </li>
                 <li className="mb-4">
                   <a href="#" className="hover:underline">
-                    Support Server
+                    Destek Sunucusu
                   </a>
                 </li>
                 <li className="mb-4">
@@ -47,22 +45,22 @@ const Footer: React.FC = () => {
             </div>
             <div>
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Company
+                Şirket
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                   <a href="#" className="hover:underline">
-                    Careers
+                    Kariyer
                   </a>
                 </li>
                 <li className="mb-4">
                   <a href="#" className="hover:underline">
-                    Terms of Use
+                    Kullanım Şartları
                   </a>
                 </li>
                 <li className="mb-4">
                   <a href="#" className="hover:underline">
-                    Privacy Policy
+                    Gizlilik Politikası
                   </a>
                 </li>
               </ul>
@@ -74,9 +72,9 @@ const Footer: React.FC = () => {
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2024{" "}
             <a href="https://github.com/0xQueen/" className="hover:underline">
-              Discord Bot Template
+              KUPA STARS
             </a>
-            . All Rights Reserved.
+            . Tüm Hakları Saklıdır.
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <FaDiscord
