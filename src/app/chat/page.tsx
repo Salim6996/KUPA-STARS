@@ -50,7 +50,7 @@ const ChatPage = () => {
           {/* User Icon */}
           <div className="bg-green-600 rounded-full p-2">
             <Image
-              src="https://www.svgrepo.com/show/505680/user.svg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMGMBYPcQzC_0MvwwmjlOGiGfnoVVSDfi4EJCSK150XLSmRh5YR5uIA5rt&s=10"
               alt="User"
               width={32}
               height={32}
@@ -78,7 +78,7 @@ const ChatPage = () => {
               {entry.sender === "user" ? (
                 <div className="bg-green-600 rounded-full p-2">
                   <Image
-                    src="https://www.svgrepo.com/show/505680/user.svg"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMGMBYPcQzC_0MvwwmjlOGiGfnoVVSDfi4EJCSK150XLSmRh5YR5uIA5rt&s=10"
                     alt="User"
                     width={32}
                     height={32}
