@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
                   </a>
                 </li>
                 <li className="mb-4">
-                  <a href="#" className="hover:underline ">
+                  <a href="/premium" className="hover:underline ">
                     Premium
                   </a>
                 </li>
@@ -44,17 +44,17 @@ const Footer: React.FC = () => {
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="#" className="hover:underline">
+                  <a href="/career" className="hover:underline">
                     Kariyer
                   </a>
                 </li>
                 <li className="mb-4">
-                  <a href="#" className="hover:underline">
+                  <a href="/company" className="hover:underline">
                     Kullanım Şartları
                   </a>
                 </li>
                 <li className="mb-4">
-                  <a href="#" className="hover:underline">
+                  <a href="/privacy" className="hover:underline">
                     Gizlilik Politikası
                   </a>
                 </li>
