@@ -54,7 +54,7 @@ const PrivacyPage = () => {
         <div className="bg-gray-800 rounded-lg shadow-lg p-6">
           <h2 className="text-2xl font-semibold text-blue-400 mb-4">İletişim</h2>
           <p className="text-lg">
-            Gizlilik politikamızla ilgili sorularınızı <a href="mailto:kupastars.contact@gmail.com" className="text-blue-400">support@kupastars.com</a> adresine gönderebilirsiniz.
+            Gizlilik politikamızla ilgili sorularınızı <a href="mailto:kupastars.contact@gmail.com" className="text-blue-400">kupastars.contact@gmail.com</a> adresine gönderebilirsiniz.
           </p>
         </div>
       </div>
