@@ -23,7 +23,7 @@ const ChatPage = () => {
       
       // Yanıtın başarılı olup olmadığını kontrol et
       if (!res.ok) {
-        throw new Error("API ile bağlantı kurulamadı.");
+        throw new Error(`API Error: ${res.statusText}`);
       }
       
       const data = await res.json();
@@ -110,11 +110,11 @@ const ChatPage = () => {
         {isLoading && (
           <div className="loading-message text-center mt-4">
             <Image
-              src="https://cdn-icons-png.flaticon.com/512/1104/1104405.png" // uçak simgesi
+              src="https://superstorefinder.net/support/wp-content/uploads/2018/01/4colors.gif" // Yükleniyor GIF
               alt="loading"
               width={32}
               height={32}
-              className="w-8 h-8 mx-auto animate-ping"
+              className="w-8 h-8 mx-auto"
             />
           </div>
         )}
