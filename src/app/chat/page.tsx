@@ -33,13 +33,13 @@ const ChatPage = () => {
         ...chatHistory,
         { sender: "bot", message: data.reply },
       ]);
-    } catch (error) {
+    } catch (error: any) {
       setApiError(true);
       setChatHistory([
         ...chatHistory,
         {
           sender: "bot",
-          message: "API ile bağlantı kurulamadı. Lütfen daha sonra tekrar deneyin.",
+          message: error.message || "API ile bağlantı kurulamadı. Lütfen daha sonra tekrar deneyin.",
         },
       ]);
     } finally {
@@ -109,16 +109,14 @@ const ChatPage = () => {
 
         {isLoading && (
           <div className="loading-message text-center mt-4">
-            <Image
+            <img
               src="https://superstorefinder.net/support/wp-content/uploads/2018/01/4colors.gif" // Yükleniyor GIF
               alt="loading"
-              width={32}
-              height={32}
               className="w-8 h-8 mx-auto"
             />
           </div>
         )}
-
+        
         {apiError && (
           <div className="error-message text-center text-red-500 mt-4">
             API ile bağlantı kurulamadı. Lütfen daha sonra tekrar deneyin.
