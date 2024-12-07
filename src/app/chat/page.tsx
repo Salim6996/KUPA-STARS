@@ -19,13 +19,13 @@ const ChatPage = () => {
     setApiError(false);
 
     try {
-      const res = await fetch(`https://hercai.onrender.com/v3/hercai?question=${encodeURIComponent(message)}`);
-      
+      const res = await fetch(`/api/hercai?question=${encodeURIComponent(message)}`);
+
       // Yanıtın başarılı olup olmadığını kontrol et
       if (!res.ok) {
         throw new Error(`API Error: ${res.statusText}`);
       }
-      
+
       const data = await res.json();
 
       // Yanıt verisini chat geçmişine ekle
