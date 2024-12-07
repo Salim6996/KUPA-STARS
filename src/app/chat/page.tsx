@@ -36,18 +36,18 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">
-          Hercai Chat
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+      <div className="w-full max-w-2xl bg-gray-800 shadow-lg rounded-lg p-6">
+        <h1 className="text-2xl font-bold mb-4 text-center text-gray-200">
+          KUPA STARS
         </h1>
-        <div className="flex items-center border rounded-lg overflow-hidden">
+        <div className="flex items-center border border-gray-600 rounded-lg overflow-hidden">
           <input
             type="text"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Bir şey yazın..."
-            className="w-full p-4 text-gray-700 focus:outline-none"
+            className="w-full p-4 bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none"
           />
           <button
             onClick={fetchResponse}
@@ -59,7 +59,7 @@ const ChatPage = () => {
               viewBox="0 0 24 24"
               className="w-6 h-6"
             >
-              <path d="M22.182 2.398c.292.216.475.546.475.909 0 .053-.007.105-.02.158l-3.333 14c-.111.466-.452.82-.902.95-.45.13-.939-.017-1.26-.375l-3.957-4.422-2.55 2.025 1.063 3.678c.132.456.022.949-.288 1.3-.309.35-.773.498-1.221.384l-5-1.272c-.646-.165-1.084-.77-1.075-1.431.009-.661.478-1.238 1.125-1.379l2.388-.536 8.42-6.68-9.457 5.732-3.497.785c-.302.067-.614-.02-.846-.236-.232-.215-.358-.521-.34-.837.018-.317.18-.606.432-.783l20-13c.32-.207.724-.229 1.057-.058z" />
+              <path d="M2.003 21 23 12 2.003 3 2 10l15 2-15 2 .003 7z" />
             </svg>
           </button>
         </div>
@@ -94,8 +94,27 @@ const ChatPage = () => {
           <p className="mt-4 text-center text-red-500">{error}</p>
         )}
         {response && (
-          <div className="mt-4 p-4 bg-gray-100 rounded-lg border">
-            <strong>Cevap:</strong> {response}
+          <div className="mt-4 p-4 bg-gray-700 rounded-lg border border-gray-600">
+            <div className="flex items-start space-x-4">
+              <div className="bg-gray-600 p-2 rounded-full">
+                <img
+                  src="/user-icon.svg"
+                  alt="User"
+                  className="w-8 h-8"
+                />
+              </div>
+              <p className="text-gray-300">{question}</p>
+            </div>
+            <div className="flex items-start space-x-4 mt-4">
+              <div className="bg-gray-600 p-2 rounded-full">
+                <img
+                  src="/chatgpt-icon.svg"
+                  alt="ChatGPT"
+                  className="w-8 h-8"
+                />
+              </div>
+              <p className="text-gray-300">{response}</p>
+            </div>
           </div>
         )}
       </div>
