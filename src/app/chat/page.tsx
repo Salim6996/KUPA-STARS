@@ -20,11 +20,15 @@ const ChatPage = () => {
 
     try {
       const res = await fetch(`https://hercai.onrender.com/v3/hercai?question=${encodeURIComponent(message)}`);
+      
+      // Yanıtın başarılı olup olmadığını kontrol et
       if (!res.ok) {
         throw new Error("API ile bağlantı kurulamadı.");
       }
+      
       const data = await res.json();
 
+      // Yanıt verisini chat geçmişine ekle
       setChatHistory([
         ...chatHistory,
         { sender: "bot", message: data.reply },
@@ -102,14 +106,19 @@ const ChatPage = () => {
             </div>
           </div>
         ))}
-        
+
         {isLoading && (
           <div className="loading-message text-center mt-4">
-            <img src="/loading.gif" alt="loading" className="w-8 h-8 mx-auto" />
-            <p>Yanıt yükleniyor...</p>
+            <Image
+              src="https://cdn-icons-png.flaticon.com/512/1104/1104405.png" // uçak simgesi
+              alt="loading"
+              width={32}
+              height={32}
+              className="w-8 h-8 mx-auto animate-ping"
+            />
           </div>
         )}
-        
+
         {apiError && (
           <div className="error-message text-center text-red-500 mt-4">
             API ile bağlantı kurulamadı. Lütfen daha sonra tekrar deneyin.
