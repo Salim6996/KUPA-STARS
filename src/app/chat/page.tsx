@@ -2,84 +2,67 @@
 
 import { useState } from "react";
 
-const Chat = () => {
-  const [messages, setMessages] = useState([
-    { role: "system", content: "Merhaba! Sana nasıl yardımcı olabilirim?" },
-  ]);
-  const [userInput, setUserInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+const ChatPage = () => {
+  const [question, setQuestion] = useState("");
+  const [response, setResponse] = useState("");
 
-  const fetchResponse = async (question: string) => {
-    setIsLoading(true);
+  const fetchResponse = async () => {
+    if (!question) return;
     try {
-      const response = await fetch(
-        `https://hercai.onrender.com/v3/hercai?question=${encodeURIComponent(question)}`
+      const res = await fetch(
+        `https://hercai.onrender.com/v3/hercai?question=${encodeURIComponent(
+          question
+        )}`
       );
-      const data = await response.json();
-      return data.reply || "Bir hata oluştu. Lütfen tekrar deneyin.";
+      if (!res.ok) {
+        throw new Error(`HTTP Hatası: ${res.status}`);
+      }
+      const data = await res.json();
+      setResponse(data.reply || "Cevap alınamadı.");
     } catch (error) {
-      console.error("API çağrısı sırasında hata oluştu:", error);
-      return "API ile bağlantı kurulamadı.";
-    } finally {
-      setIsLoading(false);
+      console.error("Hata:", error);
+      setResponse("API ile bağlantı kurulamadı.");
     }
   };
 
-  const sendMessage = async () => {
-    if (!userInput.trim()) return;
-
-    // Kullanıcı mesajını ekle
-    const newMessages = [...messages, { role: "user", content: userInput }];
-    setMessages(newMessages);
-
-    // API'den yanıt al
-    const botResponse = await fetchResponse(userInput);
-
-    // Yapay zeka yanıtını ekle
-    setMessages([...newMessages, { role: "assistant", content: botResponse }]);
-    setUserInput("");
-  };
-
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-4">
-      <div className="max-w-2xl mx-auto flex flex-col space-y-4">
-        <div className="flex-grow overflow-y-auto bg-gray-800 p-4 rounded-md shadow">
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}
-            >
-              <p
-                className={`inline-block p-2 rounded-md ${
-                  message.role === "user" ? "bg-blue-500" : "bg-gray-700"
-                }`}
-              >
-                {message.content}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex space-x-2">
-          <input
-            type="text"
-            className="flex-grow p-2 rounded-md bg-gray-700 text-white focus:outline-none"
-            placeholder="Mesajınızı yazın..."
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          />
-          <button
-            onClick={sendMessage}
-            className="px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none"
-            disabled={isLoading}
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Hercai Chat</h1>
+      <div className="mb-4 flex">
+        <input
+          type="text"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          className="border border-gray-300 p-2 w-full"
+          placeholder="Bir soru sorun..."
+        />
+        <button
+          onClick={fetchResponse}
+          className="bg-blue-500 text-white px-4 py-2 ml-2 flex items-center justify-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-5 h-5"
           >
-            {isLoading ? "Gönderiliyor..." : "Gönder"}
-          </button>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 21l16.5-9-16.5-9v7.5L14.25 12 3.75 13.5v7.5z"
+            />
+          </svg>
+        </button>
       </div>
+      {response && (
+        <div className="mt-4 p-4 border border-gray-300 bg-gray-100">
+          <strong>Cevap:</strong> {response}
+        </div>
+      )}
     </div>
   );
 };
 
-export default Chat;
+export default ChatPage;
