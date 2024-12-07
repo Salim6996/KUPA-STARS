@@ -47,6 +47,11 @@ const Navbar = () => {
               <Button variant="invite">Invite</Button>
             </Link>
           </li>
+          <li>
+            <Link href="/chat">
+              <Button variant="ghost">Chat</Button>
+            </Link>
+          </li>
         </ul>
       </div>
       {isOpen && (
@@ -70,6 +75,9 @@ const Navbar = () => {
               </li>
               <li className="px-4 cursor-pointer capitalize py-6 text-4xl">
                 <Link href="/invite">Invite</Link>
+              </li>
+              <li className="px-4 cursor-pointer capitalize py-6 text-4xl">
+                <Link href="/chat">Chat</Link>
               </li>
             </ul>
           </div>
