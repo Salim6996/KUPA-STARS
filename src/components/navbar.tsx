@@ -68,16 +68,16 @@ const Navbar = () => {
           <div className="flex flex-col justify-center items-center">
             <ul className="flex flex-col justify-center items-center">
               <li className="px-4 cursor-pointer capitalize py-6 text-4xl">
-                <Link href="/">Home</Link>
+                <Link href="/">Ana Sayfa</Link>
               </li>
               <li className="px-4 cursor-pointer capitalize py-6 text-4xl">
-                <Link href="/features">Features</Link>
+                <Link href="/features">Özellikler</Link>
               </li>
               <li className="px-4 cursor-pointer capitalize py-6 text-4xl">
-                <Link href="/invite">Invite</Link>
+                <Link href="/invite">Davet Et</Link>
               </li>
               <li className="px-4 cursor-pointer capitalize py-6 text-4xl">
-                <Link href="/chat">Chat</Link>
+                <Link href="/chat">AI Sohbet</Link>
               </li>
             </ul>
           </div>
