@@ -62,7 +62,7 @@ const ChatPage = () => {
         <div className="chat-logo">
           {/* ChatGPT Logo */}
           <Image
-            src="https://www.svgrepo.com/show/505687/chatbot.svg"
+            src="https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg"
             alt="Chatbot"
             width={32}
             height={32}
@@ -88,7 +88,7 @@ const ChatPage = () => {
               ) : (
                 <div className="bg-gray-600 rounded-full p-2">
                   <Image
-                    src="https://www.svgrepo.com/show/505687/chatbot.svg"
+                    src="https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg"
                     alt="Bot"
                     width={32}
                     height={32}
