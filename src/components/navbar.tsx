@@ -34,22 +34,22 @@ const Navbar = () => {
         >
           <li>
             <Link href="/">
-              <Button variant="ghost">Home</Button>
+              <Button variant="ghost">Ana Sayfa</Button>
             </Link>
           </li>
           <li>
             <Link href="/features">
-              <Button variant="ghost">Features</Button>
+              <Button variant="ghost">Özellikler</Button>
             </Link>
           </li>
           <li>
             <Link href="/invite">
-              <Button variant="invite">Invite</Button>
+              <Button variant="invite">Davet Et</Button>
             </Link>
           </li>
           <li>
             <Link href="/chat">
-              <Button variant="ghost">Chat</Button>
+              <Button variant="ghost">AI Sohbet</Button>
             </Link>
           </li>
         </ul>
