@@ -1,123 +1,91 @@
 "use client";
-
-import { useState } from "react";
+import React, { useState } from "react";
+import { FaPaperPlane } from "react-icons/fa";
+import Image from "next/image";
 
 const ChatPage = () => {
-  const [question, setQuestion] = useState("");
-  const [response, setResponse] = useState("");
+  const [message, setMessage] = useState("");
+  const [chatHistory, setChatHistory] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  const fetchResponse = async () => {
-    if (!question.trim()) return;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!message) return;
+
+    setChatHistory([...chatHistory, { sender: "user", message }]);
+    setMessage("");
     setIsLoading(true);
-    setError("");
-    setResponse("");
 
     try {
-      const res = await fetch(
-        `https://hercai.onrender.com/v3/hercai?question=${encodeURIComponent(
-          question
-        )}`
-      );
-
-      if (!res.ok) {
-        throw new Error(`HTTP Hatası: ${res.status}`);
-      }
-
+      const res = await fetch(`https://hercai.onrender.com/v3/hercai?question=${encodeURIComponent(message)}`);
       const data = await res.json();
-      setResponse(data.reply || "Cevap alınamadı.");
+
+      setChatHistory([
+        ...chatHistory,
+        { sender: "bot", message: data.reply },
+      ]);
     } catch (error) {
-      console.error("Hata:", error);
-      setError("API ile bağlantı kurulamadı. Lütfen daha sonra tekrar deneyin.");
+      setChatHistory([
+        ...chatHistory,
+        {
+          sender: "bot",
+          message: "API ile bağlantı kurulamadı. Lütfen daha sonra tekrar deneyin.",
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-      <div className="w-full max-w-2xl bg-gray-800 shadow-lg rounded-lg p-6">
-        <h1 className="text-2xl font-bold mb-4 text-center text-gray-200">
-          KUPA STARS
-        </h1>
-        <div className="flex items-center border border-gray-600 rounded-lg overflow-hidden">
-          <input
-            type="text"
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Bir şey yazın..."
-            className="w-full p-4 bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none"
-          />
-          <button
-            onClick={fetchResponse}
-            className="p-4 bg-blue-500 hover:bg-blue-600 text-white flex items-center justify-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              className="w-6 h-6"
-            >
-              <path d="M2.003 21 23 12 2.003 3 2 10l15 2-15 2 .003 7z" />
-            </svg>
-          </button>
-        </div>
-        {isLoading && (
-          <div className="flex justify-center items-center mt-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 100"
-              className="w-12 h-12"
-            >
-              <circle
-                cx="50"
-                cy="50"
-                r="35"
-                stroke="#4F46E5"
-                strokeWidth="8"
-                fill="none"
-                strokeDasharray="164.93361431346415 56.97787143782138"
-              >
-                <animateTransform
-                  attributeName="transform"
-                  type="rotate"
-                  repeatCount="indefinite"
-                  dur="1s"
-                  values="0 50 50;360 50 50"
-                />
-              </circle>
-            </svg>
+    <div className="chat-container bg-gray-900 text-white min-h-screen flex flex-col justify-between">
+      <div className="chat-header flex items-center justify-between p-4 bg-gray-800">
+        <div className="flex items-center">
+          <div className="bg-green-600 rounded-full p-2">
+            {/* User Icon */}
+            <img src="https://www.svgrepo.com/show/505680/user.svg" alt="User" className="w-8 h-8" />
           </div>
-        )}
-        {error && (
-          <p className="mt-4 text-center text-red-500">{error}</p>
-        )}
-        {response && (
-          <div className="mt-4 p-4 bg-gray-700 rounded-lg border border-gray-600">
-            <div className="flex items-start space-x-4">
-              <div className="bg-gray-600 p-2 rounded-full">
-                <img
-                  src="/user-icon.svg"
-                  alt="User"
-                  className="w-8 h-8"
-                />
-              </div>
-              <p className="text-gray-300">{question}</p>
+          <h2 className="ml-4 text-xl">KUPA STARS Chat</h2>
+        </div>
+        <div className="chat-logo">
+          {/* ChatGPT Logo */}
+          <img src="https://www.svgrepo.com/show/505687/chatbot.svg" alt="Chatbot" className="w-8 h-8" />
+        </div>
+      </div>
+
+      <div className="chat-box overflow-auto p-4 flex-1">
+        {chatHistory.map((entry, index) => (
+          <div key={index} className={`chat-message ${entry.sender === "user" ? "text-right" : "text-left"}`}>
+            <div className="message">
+              {entry.sender === "user" ? (
+                <div className="user-message bg-blue-500 text-white p-2 rounded-lg inline-block max-w-xs">{entry.message}</div>
+              ) : (
+                <div className="bot-message bg-gray-700 text-white p-2 rounded-lg inline-block max-w-xs">{entry.message}</div>
+              )}
             </div>
-            <div className="flex items-start space-x-4 mt-4">
-              <div className="bg-gray-600 p-2 rounded-full">
-                <img
-                  src="/chatgpt-icon.svg"
-                  alt="ChatGPT"
-                  className="w-8 h-8"
-                />
-              </div>
-              <p className="text-gray-300">{response}</p>
-            </div>
+          </div>
+        ))}
+
+        {isLoading && (
+          <div className="loading-message text-center mt-4">
+            <img src="/loading.gif" alt="loading" className="w-8 h-8 mx-auto" />
+            <p>Yanıt yükleniyor...</p>
           </div>
         )}
       </div>
+
+      <form onSubmit={handleSubmit} className="chat-input bg-gray-800 p-4 flex items-center">
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className="flex-1 p-2 rounded-lg bg-gray-700 text-white focus:outline-none"
+          placeholder="Mesajınızı yazın..."
+        />
+        <button type="submit" className="ml-2 text-white">
+          <FaPaperPlane size={24} />
+        </button>
+      </form>
     </div>
   );
 };
