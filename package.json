@@ -26,8 +26,7 @@
     "shadcn-ui": "^0.8.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "typed.js": "^2.1.0",
-    "hercai": "^12.4.0"
+    "typed.js": "^2.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
