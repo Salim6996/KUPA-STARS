@@ -1,151 +1,212 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Hercai, QuestionData } from 'hercai';
-import Image from 'next/image';
-import { FaPaperPlane } from 'react-icons/fa';
+import { useState } from "react";
+import axios from "axios";
 
+// Mesaj tipleri
+interface Message {
+  content: string;
+  sender: "user" | "bot"; // Gönderen: Kullanıcı veya Bot
+  timestamp: string;
+}
 
+export default function ChatPage() {
+  const [question, setQuestion] = useState<string>(""); // Kullanıcı sorusu
+  const [response, setResponse] = useState<string | null>(null); // Bot yanıtı
+  const [loading, setLoading] = useState<boolean>(false); // Yükleniyor durumu
+  const [messageHistory, setMessageHistory] = useState<Message[]>([]); // Mesaj geçmişi
 
-// Hercai API Setup
-const herc = new Hercai();
-
-// Sohbet sayfası component'i
-const ChatPage: React.FC = () => {
-  const [messages, setMessages] = useState<
-    { type: 'user' | 'ai'; content: string; id: string }[]
-  >([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>('');
-  const [editMessageId, setEditMessageId] = useState<string | null>(null);
-
-  // Mesaj gönderme işlemi
-  const sendMessage = async () => {
-    if (!message) return;
-
-    const newMessage = { type: 'user', content: message, id: Date.now().toString() };
-
-    setMessages((prev) => [...prev, newMessage]);
-    setMessage('');
+  // API'den cevap almak için kullanılan fonksiyon
+  const fetchResponse = async (question: string) => {
+    if (!question.trim()) return; // Boş soru girilemez
     setLoading(true);
 
     try {
-      const response: QuestionData = await herc.question({
-        model: 'v3',
-        content: message,
-      });
+      const apiUrl = `https://hercai.onrender.com/v3-32k/hercai?question=${encodeURIComponent(question)}`;
+      const { data } = await axios.get(apiUrl);
 
-      setMessages((prev) => [
-        ...prev,
-        {
-          type: 'ai',
-          content: response.reply,
-          id: Date.now().toString(),
-        },
-      ]);
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          type: 'ai',
-          content: 'API ile bağlantı kurulamadı. Lütfen tekrar deneyin.',
-          id: Date.now().toString(),
-        },
-      ]);
+      if (data && data.reply) {
+        // Yeni gelen mesajı ekle
+        const newMessage: Message = {
+          content: data.reply,
+          sender: "bot",
+          timestamp: new Date().toLocaleString(),
+        };
+
+        const userMessage: Message = {
+          content: question,
+          sender: "user",
+          timestamp: new Date().toLocaleString(),
+        };
+
+        // Geçmişi güncelle
+        setMessageHistory((prevMessages) => [
+          ...prevMessages,
+          userMessage,
+          newMessage,
+        ]);
+        setResponse(data.reply); // Yanıtı sakla
+      } else {
+        throw new Error("Yanıt alınamadı.");
+      }
+    } catch (err: any) {
+      console.error(err);
     } finally {
       setLoading(false);
     }
   };
 
-  // Mesaj düzenleme
-  const editMessage = (id: string) => {
-    const messageToEdit = messages.find((msg) => msg.id === id);
-    if (messageToEdit && messageToEdit.type === 'user') {
-      setMessage(messageToEdit.content);
-      setEditMessageId(id);
-    }
+  // Soru gönderme
+  const handleSubmit = () => {
+    if (!question.trim()) return; // Boş soru girilemez
+    fetchResponse(question); // API'yi çağır
+    setQuestion(""); // Soruyu sıfırla
   };
 
-  // Mesajı yeniden oluştur
-  const regenerateMessage = (id: string) => {
-    const messageToRegenerate = messages.find((msg) => msg.id === id && msg.type === 'user');
-    if (messageToRegenerate) {
-      setLoading(true);
-      setMessages((prev) => prev.filter((msg) => msg.id !== id)); // Önceki mesajı sil
-      setMessages((prev) => [...prev, { type: 'user', content: messageToRegenerate.content, id: Date.now().toString() }]); // Yeniden gönder
-      sendMessage();
-    }
-  };
+  // Mesaj baloncuklarını render etme
+  const renderMessageHistory = () => {
+    return messageHistory.map((msg, index) => (
+      <div
+        key={index}
+        style={{
+          marginBottom: "15px",
+          display: "flex",
+          justifyContent: msg.sender === "user" ? "flex-end" : "flex-start",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          {/* Profil Resmi */}
+          <img
+            src={msg.sender === "user" ? "https://www.w3schools.com/w3images/avatar2.png" : "https://www.w3schools.com/w3images/avatar5.png"} // Profil resimleri
+            alt={msg.sender === "user" ? "Kullanıcı" : "Bot"}
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              border: "2px solid #007bff",
+            }}
+          />
 
-  // Mesajı kopyalama
-  const copyMessage = (content: string) => {
-    navigator.clipboard.writeText(content);
-    alert('Mesaj kopyalandı!');
+          <div
+            style={{
+              backgroundColor: msg.sender === "user" ? "#007bff" : "#e9e9eb",
+              color: msg.sender === "user" ? "#fff" : "#000",
+              borderRadius: "10px",
+              padding: "12px 18px",
+              maxWidth: "60%",
+              wordBreak: "break-word",
+              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <p style={{ margin: 0, fontSize: "14px" }}>{msg.content}</p>
+            <small
+              style={{
+                display: "block",
+                textAlign: msg.sender === "user" ? "right" : "left",
+                color: "#888",
+                fontSize: "12px",
+                marginTop: "5px",
+              }}
+            >
+              {msg.timestamp}
+            </small>
+          </div>
+        </div>
+      </div>
+    ));
   };
 
   return (
-    <div className="chat-container bg-gray-900 text-white min-h-screen flex flex-col">
-      <div className="chat-header p-4 bg-gray-800">
-        <div className="flex items-center">
-          <Image
-            src="https://www.svgrepo.com/show/208310/user.svg"
-            alt="User"
-            width={32}
-            height={32}
-            className="w-8 h-8"
-          />
-          <h2 className="ml-4 text-xl">AI Chat</h2>
-        </div>
+    <div
+      style={{
+        padding: "20px",
+        fontFamily: "Arial, sans-serif",
+        maxWidth: "800px",
+        margin: "0 auto",
+        backgroundColor: "#f9f9f9",
+        borderRadius: "8px",
+        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+      }}
+    >
+      <h1
+        style={{
+          textAlign: "center",
+          color: "#333",
+          fontSize: "24px",
+          fontWeight: "bold",
+          marginBottom: "30px",
+        }}
+      >
+        Kupa Stars AI - Sohbet Başlat
+      </h1>
+
+      {/* Mesaj geçmişi */}
+      <div
+        style={{
+          backgroundColor: "#fff",
+          borderRadius: "10px",
+          padding: "20px",
+          maxHeight: "400px",
+          overflowY: "auto",
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.05)",
+          marginBottom: "20px",
+        }}
+      >
+        {renderMessageHistory()}
       </div>
 
-      <div className="chat-box flex-1 p-4 overflow-auto">
-        {messages.map((msg) => (
-          <div key={msg.id} className={`message ${msg.type === 'user' ? 'text-right' : 'text-left'}`}>
-            <div className="flex items-center">
-              <div className={`message-box ${msg.type === 'user' ? 'bg-blue-500' : 'bg-gray-700'} p-3 rounded-lg`}>
-                {msg.content}
-              </div>
-
-              <div className="message-options flex items-center space-x-2 ml-2">
-                {msg.type === 'user' && (
-                  <>
-                    <FaEdit className="cursor-pointer" onClick={() => editMessage(msg.id)} />
-                    <FaRegCopy className="cursor-pointer" onClick={() => copyMessage(msg.content)} />
-                  </>
-                )}
-                {msg.type === 'ai' && (
-                  <FaUndo className="cursor-pointer" onClick={() => regenerateMessage(msg.id)} />
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {loading && (
-          <div className="loading-message text-center mt-4">
-            <img src="https://superstorefinder.net/support/wp-content/uploads/2018/01/4colors.gif" alt="loading" className="w-12 h-12 mx-auto" />
-          </div>
-        )}
-      </div>
-
-      <div className="chat-input bg-gray-800 p-4 flex items-center">
+      {/* Soru Gönderme Alanı */}
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <input
           type="text"
-          className="flex-1 p-2 rounded-lg bg-gray-700 text-white focus:outline-none"
-          placeholder="Mesajınızı yazın..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Bir soru sorun..."
+          style={{
+            width: "100%",
+            padding: "12px",
+            borderRadius: "5px",
+            border: "1px solid #ddd",
+            fontSize: "16px",
+          }}
         />
         <button
-          type="button"
-          className="ml-2 text-white"
-          onClick={sendMessage}
+          onClick={handleSubmit}
+          disabled={loading}
+          style={{
+            backgroundColor: "#007bff",
+            color: "#fff",
+            padding: "12px 20px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontSize: "16px",
+            transition: "background-color 0.3s ease",
+          }}
         >
-          <FaPaperPlane size={24} />
+          {loading ? "Yükleniyor..." : "Gönder"}
         </button>
       </div>
+
+      {/* Yükleniyor göstergesi */}
+      {loading && (
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "20px",
+            color: "#888",
+            fontSize: "14px",
+          }}
+        >
+          <p>Yükleniyor...</p>
+        </div>
+      )}
     </div>
   );
-};
-
-export default ChatPage;
+}
