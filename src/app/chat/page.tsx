@@ -1,11 +1,14 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Hercai, QuestionData } from 'hercai';
 import Image from 'next/image';
 import { FaPaperPlane } from 'react-icons/fa';
-import { FaEdit, FaRegCopy, FaUndo } from 'react-icons/fa';
+
+
 
 // Hercai API Setup
-const herc = new Hercai(); // API Key optional, "new Hercai('your_api_key')"
+const herc = new Hercai();
 
 // Sohbet sayfası component'i
 const ChatPage: React.FC = () => {
