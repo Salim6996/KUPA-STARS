@@ -1,5 +1,7 @@
 {
-  "client_id": "DISCORD_CLIENT_ID",
-  "client_secret": "DISCORD_CLIENT_SECRET",
-  "redirect_uri": "http://localhost:3000/api/auth/callback"
+  "discord": {
+    "clientId": "DISCORD_CLIENT_ID",
+    "clientSecret": "DISCORD_CLIENT_SECRET",
+    "callbackUrl": "http://localhost:3000/api/auth/callback/discord"
+  }
 }
