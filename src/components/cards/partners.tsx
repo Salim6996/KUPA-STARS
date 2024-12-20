@@ -11,15 +11,21 @@ const Partners: React.FC = () => {
             <span className="text-pink-500">KUPA STARS</span>'ı kullanıyor
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
-            <Skeleton className="w-16 h-16 rounded-full" />
-            <Skeleton className="w-16 h-16 rounded-full" />
-            <Skeleton className="w-16 h-16 rounded-full" />
-            <Skeleton className="w-16 h-16 rounded-full" />
-            <Skeleton className="w-16 h-16 rounded-full" />
-            <Skeleton className="w-16 h-16 rounded-full" />
-            <Skeleton className="w-16 h-16 rounded-full" />
-            <Skeleton className="w-16 h-16 rounded-full" />
-            <Skeleton className="w-16 h-16 rounded-full" />
+            <img
+              src="https://example.com/logo1.png"
+              alt="Logo 1"
+              className="w-16 h-16 rounded-full"
+            />
+            <img
+              src="https://example.com/logo2.png"
+              alt="Logo 2"
+              className="w-16 h-16 rounded-full"
+            />
+            <img
+              src="https://example.com/logo3.png"
+              alt="Logo 3"
+              className="w-16 h-16 rounded-full"
+            />
           </div>
         </div>
       </div>
