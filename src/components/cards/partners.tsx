@@ -10,23 +10,10 @@ const Partners: React.FC = () => {
             Birçok popüler sunucu{" "}
             <span className="text-pink-500">KUPA STARS</span>'ı kullanıyor
           </h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            <img
-              src="https://example.com/logo1.png"
-              alt="Logo 1"
-              className="w-16 h-16 rounded-full"
-            />
-            <img
-              src="https://example.com/logo2.png"
-              alt="Logo 2"
-              className="w-16 h-16 rounded-full"
-            />
-            <img
-              src="https://example.com/logo3.png"
-              alt="Logo 3"
-              className="w-16 h-16 rounded-full"
-            />
-          </div>
+          <p className="text-lg text-gray-600 mt-4">
+            En İyi Sunucuların Güvendiği Güç:{" "}
+            <span className="text-pink-500 font-semibold">KUPA STARS</span>
+          </p>
         </div>
       </div>
     </section>
