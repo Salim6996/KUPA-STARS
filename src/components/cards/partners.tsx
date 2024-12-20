@@ -6,17 +6,15 @@ const Partners: React.FC = () => {
       <style>
         {`
           .kupa-stars-effect {
-            background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0);
-            background-size: 200% 200%;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #1dd1a1, #5f27cd);
+            background-size: 300% 300%;
             color: transparent;
             background-clip: text;
             -webkit-background-clip: text;
-            animation: shine 3s linear infinite;
-            font-weight: bold;
-            text-shadow: 0 0 5px #ff0080, 0 0 10px #ff8c00, 0 0 15px #40e0d0, 0 0 20px #ff0080;
+            animation: gradientMove 5s infinite;
           }
 
-          @keyframes shine {
+          @keyframes gradientMove {
             0% {
               background-position: 0% 50%;
             }
@@ -33,13 +31,9 @@ const Partners: React.FC = () => {
         <div className="container mx-auto">
           <div className="flex flex-col items-center">
             <h2 className="text-2xl font-bold mb-6">
-              Birçok popüler sunucu{" "}
+              En İyi Sunucuların Güvendiği Güç:{" "}
               <span className="kupa-stars-effect">KUPA STARS</span>'ı kullanıyor
             </h2>
-            <p className="text-lg text-gray-600 mt-4">
-              En İyi Sunucuların Güvendiği Güç:{" "}
-              <span className="kupa-stars-effect">KUPA STARS</span>
-            </p>
           </div>
         </div>
       </section>
